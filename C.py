@@ -5,8 +5,9 @@ for i in range(num_of_lines):
     line = raw_input()
     lines.append(line)
 
-
 def process(line):
+    done = []
+
     count = 0
     A, B = [int(x) for x in line.split()]
 
@@ -18,10 +19,14 @@ def process(line):
             possible += 1
             p = s[possible:] + s[:possible]
 
-            m = int(p)
+            u = '%s%s' % (s, p)
+            if u not in done:
+                done.append(u)
 
-            if A <= n < m <= B:
-                count += 1
+                m = int(p)
+
+                if A <= n < m <= B:
+                    count += 1
     return count
 
 for line_num, line in enumerate(lines, 1):
